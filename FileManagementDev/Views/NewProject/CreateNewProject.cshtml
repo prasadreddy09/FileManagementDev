@@ -1,0 +1,99 @@
+﻿@model FileManagementDev.Models.CreateProjectModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create New Project</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <p class="bg-primary">Create New Project</p>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        {
+    <div class="container-fluid center-block">
+        <div class="row">
+            <div>
+                @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-lg-1" })
+                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
+
+                @Html.LabelFor(model => model.ProjectType, htmlAttributes: new { @class = "control-label col-lg-1" })
+                @Html.DropDownListFor(M => M.ProjectType, new SelectList(Model.ProjectType, "ProjectTypeId", "ProjectTypeText"), htmlAttributes: new { @class = "form-control col-lg-4" })
+            </div>
+        </div>
+        <div><br></div>
+        <div class="row">
+            <div>
+                @Html.LabelFor(model => model.ScopeOfWork, htmlAttributes: new { @class = "control-label col-lg-1" })
+                @Html.DropDownListFor(M => M.ScopeOfWork, new SelectList(Model.ScopeOfWork, "WorkId", "WorkText"), htmlAttributes: new { @class = "form-control col-lg-5" })
+
+                @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-lg-1" })
+                @Html.TextAreaFor(model => model.Notes, new { @class = "form-control col-lg-5" })
+            </div>
+        </div>
+        <div><br></div>
+        <div class="row">
+
+            <div>
+                @Html.LabelFor(model => model.JobNumber, htmlAttributes: new { @class = "control-label col-lg-1" })
+                @Html.EditorFor(model => model.JobNumber, new { htmlAttributes = new { @class = "form-control col-lg-5" } })
+
+                @Html.Label("Job Sheet", htmlAttributes: new { @class = "control-label col-lg-1" })
+                <input type="file" id="jobSheetToUpload" name="jobSheetToUpload" />
+            </div>
+        </div>
+        <div><br></div>
+        <div class="row">
+
+            <div>
+                @Html.Label("Contract Drawing", htmlAttributes: new { @class = "control-label col-lg-2" })
+                <input type="file" id="contractDrawingToUpload" name="jobSheetToUpload" />
+            </div>
+        </div>
+        <div><br></div>
+        <div class="row">
+            @Html.LabelFor(model => model.PurchaseOrder, htmlAttributes: new { @class = "control-label col-lg-2" })
+            @Html.EditorFor(model => model.PurchaseOrder, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
+        </div>
+        <div><br></div>
+        <h3>Bar Code Information</h3>
+        <div><br></div>
+        <div class="row">
+
+            <div>
+                @Html.LabelFor(model => model.BarCodeInformation.StockLength, htmlAttributes: new { @class = "control-label col-lg-2" })
+                @Html.EditorFor(model => model.BarCodeInformation.StockLength, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
+
+                @Html.LabelFor(model => model.BarCodeInformation.BarGrade, htmlAttributes: new { @class = "control-label col-lg-2" })
+                @Html.EditorFor(model => model.BarCodeInformation.BarGrade, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
+            </div>
+        </div>
+        <div><br></div>
+        <div class="row">
+
+            <div>
+                @Html.LabelFor(model => model.BarCodeInformation.StandardSplice, htmlAttributes: new { @class = "control-label col-lg-2" })
+                @Html.EditorFor(model => model.BarCodeInformation.StandardSplice, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
+
+                @Html.LabelFor(model => model.BarCodeInformation.MechanicalSplice, htmlAttributes: new { @class = "control-label col-lg-2" })
+                @Html.EditorFor(model => model.BarCodeInformation.MechanicalSplice, new { htmlAttributes = new { @class = "form-control col-lg-4" } })
+            </div>
+        </div>
+    </div>
+        }
+    }
+
+</body>
+</html>
